@@ -13,7 +13,7 @@ access to all your keybase system.
 * Solution Proposal
 
 I'll try hack the system based on a english dictionary with 2048 words
-from bitcoin that it's used to generate the random paper key.
+from [[https://github.com/bitcoin/bips/blob/master/bip-0039/english.txt][bitcoin]] that it's used to generate the random paper key.
 
 My paper key should have 13 words, but I only have 12 because I forgot
 to write down one of them.
