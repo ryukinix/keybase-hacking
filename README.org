@@ -1,0 +1,77 @@
+#+TITLE: Paper Key Hacking!
+#+AUTHOR: Manoel Vilela
+#+DATE: <2019-01-08 Tue>
+
+* Description
+
+I have forgot to write one word of 13 of paper key from
+keybase.io. The paper key is a physical device to authenticate
+others and in general the unique recover system to keybase
+account. It's a important feature and key because gives to you the
+access to all your keybase system.
+
+* Solution Proposal
+
+I'll try hack the system based on a english dictionary with 2048 words
+from bitcoin that it's used to generate the random paper key.
+
+My paper key should have 13 words, but I only have 12 because I forgot
+to write down one of them.
+
+The first two words I'm sure that is correct and there is no more
+words between because they are public: the name of the device
+paper key.
+
+If I assume that there is only unique words on a paper key, the number
+of combinations to crack would be at least:
+
+#+BEGIN_SRC python :session
+words = 2048
+paperkey = 12
+words_placements = 10
+combs = word_placements * (words - paperkey)
+combs # 20360
+#+END_SRC
+
+#+RESULTS:
+: 20360
+
+20360 combinations! Which is far simple to brute force it... The
+unique problem is that would be 20k remote API calls needed. If there
+is some limit of API calls per minute, day or whatever... which I
+don't know if there is a limit or what is it. (PS.: there is no any
+limit!)
+
+I'll use the following command to automatize the login guess during
+the cracking:
+
+#+BEGIN_EXAMPLE
+keybase oneshot --username <username> --paperkey <word-list>
+#+END_EXAMPLE
+
+* Usage
+
+Pre-requisites:
++ Python3+
++ TQDM (~pip install tqdm~)
++ Keybase cli
+
+1. Set your username hardcoded in [[file:run.sh][run.sh]] USERNAME variable.
+2. Fill your incomplete paperkey in ~data/paperkey_incomplete.txt~ with
+   each word per line in lowercase.
+3. Run run.sh and hope the best.
+
+* Conclusion & Results
+
+The overall crack toke about 3 hours to conclude, the development and
+execution. Result: *I recover access to my keybase* :]
+
+I'm satisfied to get my access back without the cumbersome shit of
+resetting the overall account! However keybase central selling point
+is all about being secure.
+
+Actually, keybase it's really supposed to be a super nifty secure
+system. I know is a edge case have almost all words of a paper key of
+someone, but not all, however I'm shocked by the fact that
+after so many attempts of login in a small amount of time my IP didn't
+get blocked.
